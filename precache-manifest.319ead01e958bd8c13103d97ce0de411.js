@@ -1,5 +1,21 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
+    "revision": "6a01568b0f4911bfe91b5267cf0f0703",
+    "url": "/phaser-test-game/assets/audio/cat-angry.mp3"
+  },
+  {
+    "revision": "dd5fc347de175e6841865ce12976ee21",
+    "url": "/phaser-test-game/assets/audio/cat-angry.ogg"
+  },
+  {
+    "revision": "ce2d6d59d95b88a6effd30454448157a",
+    "url": "/phaser-test-game/assets/audio/cat-happy.mp3"
+  },
+  {
+    "revision": "34024474add44e49eadb813e8faa3543",
+    "url": "/phaser-test-game/assets/audio/cat-happy.ogg"
+  },
+  {
     "revision": "ef35c1db9dc5fe7a5168263f62f6ff2e",
     "url": "/phaser-test-game/assets/citations.md"
   },
@@ -25,6 +41,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   },
   {
     "revision": "06545d97d3a58fab3d2c5bc36c8c2c9a",
+    "url": "/phaser-test-game/assets/img/cat/cat_middle - Copy.png"
+  },
+  {
+    "revision": "5ceced400e9e91ec76b10d8d992aea65",
     "url": "/phaser-test-game/assets/img/cat/cat_middle.png"
   },
   {
@@ -60,12 +80,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/phaser-test-game/icons/icons8-cat-64.png"
   },
   {
-    "revision": "871bae161b841f065d3183a549bbb62c",
+    "revision": "de3aa4ce196d4e36242e418526bfc25c",
     "url": "/phaser-test-game/index.html"
   },
   {
-    "revision": "a9c8ade91cccba55deee",
-    "url": "/phaser-test-game/main.c6dac28b4018ff4c4683.bundle.js"
+    "revision": "5a358a61af88897883c0",
+    "url": "/phaser-test-game/main.111cb30fb4a16ef2231f.bundle.js"
   },
   {
     "revision": "fecaafd0173be71f4ac68eee5f966eee",
