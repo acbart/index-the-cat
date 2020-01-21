@@ -1,0 +1,58 @@
+{
+  "name": "educational-phaser-game-template",
+  "version": "0.0.1",
+  "description": "Phaser 3 starter template for educational games, using TypeScript, webpack, and Github Pages.",
+  "homepage": "https://github.com/acbart/educational-phaser-game-template#readme",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --config config/webpack.dev.js",
+    "build": "webpack --config config/webpack.prod.js",
+    "deploy-gh": "webpack --config config/webpack.ghpages.js && gh-pages -d dist"
+  },
+  "keywords": [
+    "Phaser",
+    "Phaser 3",
+    "Phaser3",
+    "html5 game",
+    "educational games",
+    "educational game design",
+    "TypeScript",
+    "webpack",
+    "Github Pages",
+    "starter"
+  ],
+  "author": {
+    "name": "Austin Cory Bart",
+    "url": "https://github.com/acbart"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acbart/educational-phaser-game-template.git"
+  },
+  "template": {
+    "name": "educational-phaser-game-template",
+    "url": "https://github.com/acbart/educational-phaser-game-template",
+    "author": "Austin Cory Bart (https://github.com/acbart)"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "clean-webpack-plugin": "^1.0.1",
+    "copy-webpack-plugin": "^5.1.1",
+    "gh-pages": "^2.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "ts-loader": "^5.4.5",
+    "typescript": "^3.7.5",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1",
+    "webpack-merge": "^4.2.2",
+    "webpack-obfuscator": "^0.18.8",
+    "workbox-webpack-plugin": "^4.3.1"
+  },
+  "dependencies": {
+    "phaser": "^3.22.0"
+  }
+}
