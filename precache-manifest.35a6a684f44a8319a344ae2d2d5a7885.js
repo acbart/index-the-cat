@@ -68,6 +68,14 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/phaser-test-game/favicon.ico"
   },
   {
+    "revision": "5a358a61af88897883c0",
+    "url": "/phaser-test-game/gen.main.111cb30fb4a16ef2231f.bundle.js"
+  },
+  {
+    "revision": "201b65bee9df6270f739",
+    "url": "/phaser-test-game/gen.vendors.a047ee0740c7d21714d9.bundle.js"
+  },
+  {
     "revision": "fa5faa7d51b634f3f13aa19c53ac5bfa",
     "url": "/phaser-test-game/icons/icons-192.png"
   },
@@ -80,12 +88,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/phaser-test-game/icons/icons8-cat-64.png"
   },
   {
-    "revision": "de3aa4ce196d4e36242e418526bfc25c",
+    "revision": "0d250922ae1147436b7bdbcf5a693076",
     "url": "/phaser-test-game/index.html"
-  },
-  {
-    "revision": "5a358a61af88897883c0",
-    "url": "/phaser-test-game/main.111cb30fb4a16ef2231f.bundle.js"
   },
   {
     "revision": "fecaafd0173be71f4ac68eee5f966eee",
@@ -94,9 +98,5 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "701445d8817f73e3da17e450b69faa36",
     "url": "/phaser-test-game/sw.js"
-  },
-  {
-    "revision": "201b65bee9df6270f739",
-    "url": "/phaser-test-game/vendors.a047ee0740c7d21714d9.bundle.js"
   }
 ]);
