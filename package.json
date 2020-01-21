@@ -1,8 +1,8 @@
 {
-  "name": "educational-phaser-game-template",
+  "name": "index-the-cat",
   "version": "0.0.1",
-  "description": "Phaser 3 starter template for educational games, using TypeScript, webpack, and Github Pages.",
-  "homepage": "https://github.com/acbart/educational-phaser-game-template#readme",
+  "description": "Simple educational game about petting cats and indexing lists",
+  "homepage": "https://github.io/acbart/index-the-cat",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config config/webpack.dev.js",
@@ -27,12 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/acbart/educational-phaser-game-template.git"
-  },
-  "template": {
-    "name": "educational-phaser-game-template",
-    "url": "https://github.com/acbart/educational-phaser-game-template",
-    "author": "Austin Cory Bart (https://github.com/acbart)"
+    "url": "https://github.com/acbart/index-the-cat.git"
   },
   "engines": {
     "node": ">=8.0.0"
