@@ -13,6 +13,8 @@ export default class MainScene extends Phaser.Scene {
   private newListFrequency: number = 10000;
   private MAX_BODY_COUNT : number = 5;
   private targetIndexDisplay: Phaser.GameObjects.Text;
+  private sfxAngryCat: Phaser.Sound.BaseSound;
+  private sfxHappyCat: Phaser.Sound.BaseSound;
 
   constructor() {
     super({ key: 'MainScene' });
@@ -40,6 +42,9 @@ export default class MainScene extends Phaser.Scene {
     this.targetIndexDisplay.setColor("black");
 
     this.updateCatBodyPosition(4);
+
+    this.sfxAngryCat = this.sound.add('cat-angry');
+    this.sfxHappyCat = this.sound.add('cat-happy');
 
     this.time.addEvent({delay: this.newListFrequency, callback: () => {
       this.updateCatBodyPosition(Phaser.Math.Between(2, this.MAX_BODY_COUNT));
@@ -70,10 +75,12 @@ export default class MainScene extends Phaser.Scene {
       text.setFontSize(32);
       text.setData("index", i);
       text.setInteractive();
+      text.input.hitArea.setPosition(-5, -20);
+      text.input.hitArea.setSize(50, 50);
       this.listGroup.add(text);
     }
     this.input.on('gameobjectdown', this.checkIndex, this);
-    this.targetIndex = Phaser.Math.Between(0, catBodyCount);
+    this.targetIndex = Phaser.Math.Between(0, catBodyCount-1);
     this.targetIndexDisplay.setText("Target Index: "+this.targetIndex);
   }
 
@@ -82,12 +89,14 @@ export default class MainScene extends Phaser.Scene {
     console.log(chosen, this.targetIndex);
     if (chosen === this.targetIndex) {
       this.catHead.setTexture('cat-head-happy');
+      this.sfxHappyCat.play();
     } else {
       this.catHead.setTexture('cat-head-mad');
+      this.sfxAngryCat.play();
     }
     this.time.addEvent({delay: 500, callback: () => {
         this.catHead.setTexture('cat-head-neutral');
-        this.targetIndex = Phaser.Math.Between(0, this.displayedValues.length);
+        this.targetIndex = Phaser.Math.Between(0, this.displayedValues.length-1);
         this.targetIndexDisplay.setText("Target Index: "+this.targetIndex);
       }, callbackScope: this, loop: false})
   }
