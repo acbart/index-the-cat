@@ -1,4 +1,5 @@
 import ExampleObject from '../objects/exampleObject';
+import TargetIndex from '../objects/targetIndex';
 
 export default class MainScene extends Phaser.Scene {
   private exampleObject: ExampleObject;
@@ -7,14 +8,13 @@ export default class MainScene extends Phaser.Scene {
   private background: Phaser.GameObjects.Image;
   private catMiddle: Phaser.GameObjects.TileSprite;
   private catY : number = 30;
-  private targetIndex : number;
   private displayedValues : Array<number>;
   private listGroup : Phaser.GameObjects.Container;
   private newListFrequency: number = 10000;
   private MAX_BODY_COUNT : number = 5;
-  private targetIndexDisplay: Phaser.GameObjects.Text;
   private sfxAngryCat: Phaser.Sound.BaseSound;
   private sfxHappyCat: Phaser.Sound.BaseSound;
+  private targetIndex: TargetIndex;
 
   constructor() {
     super({ key: 'MainScene' });
@@ -23,6 +23,11 @@ export default class MainScene extends Phaser.Scene {
   create() {
     this.background = this.add.image(0, 0, 'backdrop');
     this.background.setOrigin(0, 0);
+
+    let instructions = this.add.text(this.scale.width/2, 0, "Pet the cat, but only on the correct index.");
+    instructions.setOrigin(.5, 0);
+    instructions.setFontSize(30);
+    instructions.setColor('black');
 
     this.catHead = this.add.image(0, 0, 'cat-head-neutral');
     this.catHead.setScale(.5, .5);
@@ -34,12 +39,9 @@ export default class MainScene extends Phaser.Scene {
     this.catMiddle = this.add.tileSprite(0, 0, 0, 0, 'cat-middle');
     this.catMiddle.setScale(.5, .5);
 
-    this.listGroup = this.add.container(0, 0, []);
+    this.targetIndex = new TargetIndex(this, 0, 0);
 
-    this.targetIndexDisplay = this.add.text(this.scale.width/2, 80, this.targetIndex+"");
-    this.targetIndexDisplay.setFontSize(80);
-    this.targetIndexDisplay.setOrigin(.5, .5);
-    this.targetIndexDisplay.setColor("black");
+    this.listGroup = this.add.container(0, 0, []);
 
     this.updateCatBodyPosition(4);
 
@@ -50,8 +52,6 @@ export default class MainScene extends Phaser.Scene {
       this.updateCatBodyPosition(Phaser.Math.Between(2, this.MAX_BODY_COUNT));
       console.log("Change size!");
       }, callbackScope: this, loop: true})
-
-
 
   }
 
@@ -74,15 +74,16 @@ export default class MainScene extends Phaser.Scene {
       text.setColor("black");
       text.setFontSize(32);
       text.setData("index", i);
-      text.setInteractive();
+      text.setInteractive({cursor: 'pointer'});
       text.input.hitArea.setPosition(-5, -20);
       text.input.hitArea.setSize(50, 50);
       this.listGroup.add(text);
     }
     this.input.on('gameobjectdown', this.checkIndex, this);
-    this.targetIndex = Phaser.Math.Between(0, catBodyCount-1);
-    this.targetIndexDisplay.setText("Target Index: "+this.targetIndex);
+    this.targetIndex.updateIndex(this.displayedValues.length);
   }
+
+
 
   checkIndex(mouse, gameObject) {
     let chosen = gameObject.getData('index');
@@ -96,8 +97,7 @@ export default class MainScene extends Phaser.Scene {
     }
     this.time.addEvent({delay: 500, callback: () => {
         this.catHead.setTexture('cat-head-neutral');
-        this.targetIndex = Phaser.Math.Between(0, this.displayedValues.length-1);
-        this.targetIndexDisplay.setText("Target Index: "+this.targetIndex);
+        this.targetIndex.updateIndex(this.displayedValues.length);
       }, callbackScope: this, loop: false})
   }
 

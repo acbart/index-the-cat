@@ -7,14 +7,14 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const prod = {
   mode: 'production',
   output: {
-    filename: '[name].[contenthash].bundle.js',
-    chunkFilename: '[name].[contenthash].chunk.js'
+    filename: 'gen.[name].[contenthash].bundle.js',
+    chunkFilename: 'gen.[name].[contenthash].chunk.js'
   },
   optimization: {
     splitChunks: {
       cacheGroups: {
         commons: {
-          filename: '[name].[contenthash].bundle.js'
+          filename: 'gen.[name].[contenthash].bundle.js'
         }
       }
     }
