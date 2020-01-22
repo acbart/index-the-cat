@@ -10,16 +10,15 @@ export default class TargetIndex extends Phaser.GameObjects.Container {
 
         this.setData('index', null);
 
-        this.precedingText = scene.add.text(scene.scale.width/2, 80, this.PRECEDING_TEXT_STRING,
+        this.precedingText = scene.add.text(0, 0, this.PRECEDING_TEXT_STRING,
             {fontSize: 40, color: 'black'});
         this.precedingText.setOrigin(1, .5);
 
-        this.targetIndexText = scene.add.text(scene.scale.width/2, 80, "",
+        this.targetIndexText = scene.add.text(0, 0, "",
             {fontSize: 80, color: 'black'});
         this.targetIndexText.setOrigin(0, .5);
 
-        this.add(this.precedingText);
-        this.add(this.targetIndexText);
+        this.add([this.precedingText, this.targetIndexText]);
     }
 
     updateIndex(count) {

@@ -6,16 +6,12 @@ export default class NumberList extends Phaser.GameObjects.Container {
         scene.add.existing(this);
     }
 
-    updatePosition(cat) {
-        let catMiddlePosition = cat.catMiddle.getLeftCenter();
-        this.setPosition(catMiddlePosition.x, catMiddlePosition.y);
-    }
-
     resetNumbers(catBodyCount, catBodyWidth) {
         this.removeAll(true);
         for (let i = 0; i < catBodyCount; i += 1) {
-            let value = ''+Phaser.Math.Between(0, catBodyCount+1);
-            let text = this.scene.add.text((i + .25) * catBodyWidth / 2, -10, value,
+            let displayValue = ''+Phaser.Math.Between(0, catBodyCount+1);
+            let xPosition = (i + .25 - catBodyCount/2) * catBodyWidth / 2;
+            let text = this.scene.add.text(xPosition, -10, displayValue,
                 {color: 'black', fontSize: 32});
             text.setData('index', i);
             text.setInteractive({ cursor: 'pointer' });
