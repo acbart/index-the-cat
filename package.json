@@ -7,7 +7,7 @@
   "scripts": {
     "start": "webpack-dev-server --config config/webpack.dev.js",
     "build": "webpack --config config/webpack.prod.js",
-    "deploy-gh": "webpack --config config/webpack.ghpages.js && gh-pages -d dist"
+    "deploy-gh": "webpack --config config/webpack.ghpages.js && cp egdd.md dist/egdd.md && gh-pages -d dist"
   },
   "keywords": [
     "Phaser",
