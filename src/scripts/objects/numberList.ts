@@ -27,7 +27,7 @@ export default class NumberList extends Phaser.GameObjects.Container {
         }
         text.setFontSize(32);
         text.setInteractive({ cursor: 'pointer' });
-        text.input.hitArea.setPosition(-5, -20).setSize(50, 50);
+        text.input.hitArea.setPosition(-15, -35).setSize(70, 80);
     }
 
     highlight(index) {

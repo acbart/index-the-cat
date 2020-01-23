@@ -1,6 +1,7 @@
-const DRAGGER_COLOR: number = 0xffff00;
-const DRAGGER_HEIGHT: number = 80;
-const DRAGGER_WIDTH: number = 40;
+const DRAGGER_COLOR: number = 0xff00ff;
+const DRAGGER_HEIGHT: number = 90;
+const DRAGGER_WIDTH: number = 65;
+const DRAGGER_X_OFFSET: number = 15;
 
 export class Dragger extends Phaser.GameObjects.Rectangle {
     public startIndex: number | null;
@@ -16,7 +17,7 @@ export class Dragger extends Phaser.GameObjects.Rectangle {
     }
 
     start(x, y, startIndex) {
-        this.setPosition(x, y);
+        this.setPosition(x-DRAGGER_X_OFFSET, y);
         this.setVisible(true);
         this.setActive(true);
         this.width = DRAGGER_WIDTH;
@@ -27,6 +28,7 @@ export class Dragger extends Phaser.GameObjects.Rectangle {
         if (this.startIndex === null || this.startIndex > endIndex) {
             return false;
         }
+        x -= DRAGGER_X_OFFSET;
         if (x === this.x) {
             this.width = DRAGGER_WIDTH;
         } else {
