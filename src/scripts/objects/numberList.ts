@@ -1,3 +1,5 @@
+import { DEFAULT_FONT_SETTINGS } from "../game";
+
 export default class NumberList extends Phaser.GameObjects.Container {
     private values: Array<number>;
 
@@ -10,7 +12,7 @@ export default class NumberList extends Phaser.GameObjects.Container {
         this.removeAll(true);
         for (let i = 0; i < catBodyCount; i += 1) {
             let displayValue = generateValue(catBodyCount);
-            let xPosition = (i + .25 - catBodyCount/2) * catBodyWidth / 2;
+            let xPosition = (i + .25 - catBodyCount / 2) * catBodyWidth / 2;
             let text = this.scene.add.text(xPosition, -10, displayValue);
             text.setData('index', i);
             this.reformatText(text, false);
@@ -23,14 +25,14 @@ export default class NumberList extends Phaser.GameObjects.Container {
         if (highlighted) {
             text.setColor('red');
         } else {
-            text.setColor('black');
+            text.setColor(DEFAULT_FONT_SETTINGS.color);
         }
-        text.setFontSize(32);
+        text.setFontSize(DEFAULT_FONT_SETTINGS.fontSize);
         text.setInteractive({ cursor: 'pointer' });
         text.input.hitArea.setPosition(-15, -35).setSize(70, 80);
     }
 
-    highlight(index) {
+    highlight(index: number) {
         let text = (this.getAt(index) as Phaser.GameObjects.Text);
         this.reformatText(text, true);
     }
@@ -41,7 +43,7 @@ export default class NumberList extends Phaser.GameObjects.Container {
             start = stop;
             stop = temp;
         }
-        this.getAll().map( (text, index) => {
+        this.getAll().map((text, index) => {
             this.reformatText((text as Phaser.GameObjects.Text), (start <= index && index <= stop));
         });
     }

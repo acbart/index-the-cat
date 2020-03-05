@@ -69,24 +69,31 @@ export default class MainScene extends Phaser.Scene {
         this.roundStats = new RoundStats(this);
         this.dragger = new Dragger(this, 0, 0, 10);
         this.startRound();
+
+        // Attach the petting handlers to the various input events
+        this.input.on('gameobjectdown', this.startPet, this);
+        this.input.on('gameobjectup', this.endPet, this);
+        this.input.on('pointerup', this.endPetOutside, this);
+        this.input.on('gameobjectmove', this.movePet, this);
     }
 
     /**
-     * Initialize all the boring, unmoving objects.
+     * Initialize all the boring, unchanging objects.
      */
     setupStaticParts() {
-        // Screen width and height
-        const width = this.scale.width;
-        const height = this.scale.height;
+        // Background
+        this.add.image(this.scale.width / 2, this.scale.height / 2, 'backdrop');
 
-        this.background = this.add.image(width / 2, height / 2, 'backdrop');
-
-        let instructions = this.add.text(width / 2, 20,
+        // Main game instructions
+        let instructions = this.add.text(this.scale.width / 2, 20,
             'Pet the cat, but only on the correct index.',
             DEFAULT_FONT_SETTINGS);
         instructions.setOrigin(.5, 0);
     }
 
+    /**
+     * Advance to the next level if we won this round.
+     */
     checkRound() {
         if (this.roundStats.checkRound()) {
             this.level += 1;
@@ -94,27 +101,38 @@ export default class MainScene extends Phaser.Scene {
         }
     }
 
+    /**
+     * Initialize a new round by:
+     *  updating the cat
+     *  setting up a new sequence of numbers and target,
+     *  Attaching all the input events
+     *  Making the cat permenently happy if we reached the final level.
+     */
     startRound() {
         let level = PLAYABLE_LEVELS[this.level];
         let catBodyCount = level.generateLength();
+        // Notify cat, number list, target, and dragger
         this.cat.updateCatBodyPosition(catBodyCount);
         this.listGroup.resetNumbers(catBodyCount, this.cat.CAT_BODY_WIDTH, level.generateValue);
-        this.input.on('gameobjectdown', this.startPet, this);
-        this.input.on('gameobjectup', this.endPet, this);
-        this.input.on('pointerup', this.endPetOutside, this);
-        this.input.on('gameobjectmove', this.movePet, this);
         this.targetIndex.updateIndex(level, this.listGroup.length);
         this.dragger.hide();
+        // Handle advancing the stats object
         this.roundStats.newRound(level.name);
         if (level.type === LevelType.Win) {
             this.cat.petCatCorrectly();
         }
     }
 
-    startPet(mouse, gameObject) {
+    /**
+     * Respond to initial click by moving the dragger to clicked index.
+     * @param mouse Information about the mouse.
+     * @param gameObject The portion of the NumberList that was clicked.
+     */
+    startPet(mouse: Phaser.Input.Pointer, gameObject: NumberList) {
         if (!this.feedbackTimer) {
-            let chosen = gameObject.getData('index');
-            this.dragger.start(this.listGroup.x + gameObject.x + gameObject.width / 2, this.listGroup.y, chosen);
+            let chosen: number = gameObject.getData('index');
+            this.dragger.start(this.listGroup.x + gameObject.x + gameObject.width / 2,
+                this.listGroup.y, chosen);
             this.listGroup.highlight(chosen);
         }
     }
