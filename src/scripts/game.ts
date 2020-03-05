@@ -5,7 +5,7 @@ import GameConfig = Phaser.Types.Core.GameConfig;
 
 const DEFAULT_WIDTH = 865;
 const DEFAULT_HEIGHT = 600;
-
+export const DEFAULT_FONT_SETTINGS = { fontSize: 32, color: 'black' };
 
 const config: GameConfig = {
     backgroundColor: '#000000',

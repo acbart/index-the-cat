@@ -1,48 +1,89 @@
+/**
+ * The main and really only scene of the game, where all gameplay currently occurs.
+ * The cat is presented here for petting, with level transitions all occurring within this scene.
+ * @packageDocumentation
+ */
+import { DEFAULT_FONT_SETTINGS } from '../game';
 import TargetIndex from '../objects/targetIndex';
 import Cat from '../objects/cat';
 import NumberList from '../objects/numberList';
 import { Level, LevelType } from '../objects/level';
 import { Dragger } from '../objects/dragger';
 import { RoundStats } from '../objects/roundStats';
-import { PLAYABLE_LEVELS } from '../objects/playable_levels';
+import { PLAYABLE_LEVELS } from '../objects/playableLevel';
 
+/**
+ * The MainScene is the core scene where all the action happens.
+ */
 export default class MainScene extends Phaser.Scene {
-
+    /**
+     * The static background image.
+     */
     private background: Phaser.GameObjects.Image;
+    /**
+     * The flexibly-sized cat
+     */
     private cat: Cat;
+    /**
+     * The list of numbers overlaid on the cat
+     */
     private listGroup: NumberList;
+    /**
+     * The bundle of text in the center of the screen showing the current target index.
+     */
     private targetIndex: TargetIndex;
+    /**
+     * The text used to show the statistics for the current round.
+     */
     private roundStats: RoundStats;
+    /**
+     * The group used to represent the user's current index highlighting.
+     */
     private dragger: Dragger;
-
+    /**
+     * What level we are current on in the game.
+     */
     private level: number;
+    /**
+     * A timer used to delay clearing out the positive/negative feedback from petting the cat.
+     */
     private feedbackTimer: Phaser.Time.TimerEvent | null = null;
 
+    /**
+     * Creates the scene, setting the level to zero.
+     */
     constructor() {
         super({ key: 'MainScene' });
-        this.level = 0;
     }
 
+    /**
+     * Creates all the objects in the scene, including the cat, target index, etc.
+     */
     create() {
+        this.level = 0;
         this.setupStaticParts();
-        let centerX = this.scale.width/2;
+        let centerX = this.scale.width / 2;
         this.cat = new Cat(this, centerX, this.scale.height);
-        this.targetIndex = new TargetIndex(this, centerX, this.scale.height/2);
-        this.listGroup = new NumberList(this, centerX, this.scale.height+this.cat.CAT_BODY_OFFSET);
+        this.targetIndex = new TargetIndex(this, centerX, this.scale.height / 2);
+        this.listGroup = new NumberList(this, centerX, this.scale.height + this.cat.CAT_BODY_OFFSET);
         this.roundStats = new RoundStats(this);
-        this.dragger = new Dragger(this,0, 0, 10);
+        this.dragger = new Dragger(this, 0, 0, 10);
         this.startRound();
     }
 
+    /**
+     * Initialize all the boring, unmoving objects.
+     */
     setupStaticParts() {
         // Screen width and height
         const width = this.scale.width;
         const height = this.scale.height;
 
-        this.background = this.add.image(width/2, height/2, 'backdrop');
+        this.background = this.add.image(width / 2, height / 2, 'backdrop');
 
-        let instructions = this.add.text(width/2, 20, 'Pet the cat, but only on the correct index.',
-            {fontSize: 30, color: 'black'});
+        let instructions = this.add.text(width / 2, 20,
+            'Pet the cat, but only on the correct index.',
+            DEFAULT_FONT_SETTINGS);
         instructions.setOrigin(.5, 0);
     }
 
@@ -111,7 +152,7 @@ export default class MainScene extends Phaser.Scene {
         }
         let indexes = [this.dragger.startIndex];
         if (this.dragger.endIndex !== null) {
-            indexes.push(this.dragger.endIndex+1);
+            indexes.push(this.dragger.endIndex + 1);
         }
         let normalized = this.targetIndex.normalizeIndexOrSubscript(indexes, this.listGroup.length);
         console.log(indexes, normalized, this.targetIndex.getIndex());
