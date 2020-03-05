@@ -39,7 +39,7 @@ export default class Cat extends Phaser.GameObjects.Container {
     updateCatBodyPosition(catBodyCount) {
         let catWidth = this.CAT_BODY_WIDTH * catBodyCount;
         this.catHead.setPosition(-catWidth / 4, 0);
-        this.catTail.setPosition(catWidth / 4,0);
+        this.catTail.setPosition(catWidth / 4, 0);
         this.catMiddle.setPosition(0, this.CAT_BODY_OFFSET);
         this.catMiddle.setSize(catWidth, this.CAT_BODY_HEIGHT);
     }

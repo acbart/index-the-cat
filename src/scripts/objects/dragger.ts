@@ -13,11 +13,10 @@ export class Dragger extends Phaser.GameObjects.Rectangle {
         this.setVisible(false);
         this.startIndex = null;
         this.endIndex = null;
-        //this.setActive(false);
     }
 
     start(x, y, startIndex) {
-        this.setPosition(x-DRAGGER_X_OFFSET, y);
+        this.setPosition(x - DRAGGER_X_OFFSET, y);
         this.setVisible(true);
         this.setActive(true);
         this.width = DRAGGER_WIDTH;
