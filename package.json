@@ -7,7 +7,11 @@
   "scripts": {
     "start": "webpack-dev-server --config config/webpack.dev.js",
     "build": "webpack --config config/webpack.prod.js",
-    "deploy-gh": "webpack --config config/webpack.ghpages.js && cp egdd.md dist/egdd.md && gh-pages -d dist"
+    "deploy-dev": "webpack --config config/webpack.deploy.js --env.endpoint=dev && gh-pages -d dist",
+    "deploy-alpha": "webpack --config config/webpack.deploy.js --env.endpoint=alpha && gh-pages -d dist",
+    "deploy-beta": "webpack --config config/webpack.deploy.js --env.endpoint=beta && gh-pages -d dist",
+    "deploy-final": "webpack --config config/webpack.deploy.js --env.endpoint=final && gh-pages -d dist",
+    "deploy-all": "gh-pages -d dist"
   },
   "keywords": [
     "Phaser",
@@ -34,6 +38,7 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "argv": "0.0.2",
     "clean-webpack-plugin": "^1.0.1",
     "copy-webpack-plugin": "^5.1.1",
     "gh-pages": "^2.2.0",

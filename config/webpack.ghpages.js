@@ -4,7 +4,8 @@ const prod = require('./webpack.prod');
 
 ghpages = {
   output: {
-    publicPath: '/index-the-cat/'
+    path: path.resolve(__dirname, `../dist/${endpoint}`),
+    publicPath: `/index-the-cat/${endpoint}`
   }
 };
 
