@@ -137,7 +137,12 @@ export default class MainScene extends Phaser.Scene {
         }
     }
 
-    movePet(mouse, gameObject) {
+    /**
+     * Respond to dragging events.
+     * @param mouse Information about the mouse.
+     * @param gameObject The portion of the NumberList that was dragged.
+     */
+    movePet(mouse: Phaser.Input.Pointer, gameObject: NumberList) {
         if (this.dragger.startIndex === null) {
             return;
         }
@@ -150,7 +155,7 @@ export default class MainScene extends Phaser.Scene {
         }
     }
 
-    endPet(mouse, gameObject) {
+    endPet(mouse: Phaser.Input.Pointer, gameObject: NumberList) {
         if (this.dragger.startIndex === null) {
             return;
         }
@@ -164,7 +169,7 @@ export default class MainScene extends Phaser.Scene {
         this.endPetOutside(mouse);
     }
 
-    endPetOutside(mouse) {
+    endPetOutside(mouse: Phaser.Input.Pointer) {
         if (this.dragger.startIndex === null) {
             return;
         }
@@ -173,7 +178,6 @@ export default class MainScene extends Phaser.Scene {
             indexes.push(this.dragger.endIndex + 1);
         }
         let normalized = this.targetIndex.normalizeIndexOrSubscript(indexes, this.listGroup.length);
-        console.log(indexes, normalized, this.targetIndex.getIndex());
         this.handlePet(normalized === this.targetIndex.getIndex());
         this.dragger.hide();
     }
