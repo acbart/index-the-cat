@@ -1,13 +1,13 @@
 /**
  * The different types of levels, whether it asks the player to pick an Index,
- * a Subscript, or potentially either (both). Also has the special "Win" type
+ * a Slice, or potentially either (subscript). Also has the special "Win" type
  * of level, holding the end.
  * TODO: Have a proper separate ending Scene instead of a hacky Win level.
  */
 export enum LevelType {
     Index,
+    Slice,
     Subscript,
-    Both,
     Win
 }
 
