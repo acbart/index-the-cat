@@ -155,6 +155,11 @@ export default class MainScene extends Phaser.Scene {
         }
     }
 
+    /**
+     * Respond to releasing the mouse while on top of the NumberList
+     * @param mouse 
+     * @param gameObject 
+     */
     endPet(mouse: Phaser.Input.Pointer, gameObject: NumberList) {
         if (this.dragger.startIndex === null) {
             return;
@@ -169,6 +174,10 @@ export default class MainScene extends Phaser.Scene {
         this.endPetOutside(mouse);
     }
 
+    /**
+     * Respond to the mouse being released, but we're not necessarily on the NumberList.
+     * @param mouse
+     */
     endPetOutside(mouse: Phaser.Input.Pointer) {
         if (this.dragger.startIndex === null) {
             return;
@@ -182,6 +191,11 @@ export default class MainScene extends Phaser.Scene {
         this.dragger.hide();
     }
 
+    /**
+     * Play the animations/sound effects of the cat being either pet correctly or incorrectly,
+     * and then handle the next round after a short delay.
+     * @param correct 
+     */
     private handlePet(correct: boolean) {
         if (correct) {
             this.cat.petCatCorrectly();
