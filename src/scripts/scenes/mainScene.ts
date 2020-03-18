@@ -167,7 +167,7 @@ export default class MainScene extends Phaser.Scene {
         let chosen = gameObject.getData('index');
         if (chosen !== this.dragger.endIndex) {
             let moved = this.dragger.move(this.listGroup.x + gameObject.x + gameObject.width / 2, chosen);
-            if (moved) {
+            if (moved && this.dragger.endIndex !== null) {
                 this.listGroup.highlightRange(this.dragger.startIndex, this.dragger.endIndex);
             }
         }
