@@ -1,3 +1,5 @@
+import { Subscript } from "./playableLevel";
+
 /**
  * The different types of levels, whether it asks the player to pick an Index,
  * a Slice, or potentially either (subscript). Also has the special "Win" type
@@ -17,9 +19,9 @@ export enum LevelType {
  */
 export type ValueGenerator = (n: number) => string;
 // A function that consumes nothing but returns a number when executed (e.g., at random).
-type LengthGenerator = () => number;
+export type LengthGenerator = () => number;
 // A function that consumes a number and returns a list of numbers (some of which may be null)
-type IndexGenerator = (n: number) => Array<number | string | null>;
+export type IndexGenerator = (n: number) => Subscript;
 
 /**
  * Plain Old JavaScript Object to hold the representation of a Level.

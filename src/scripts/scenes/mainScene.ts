@@ -10,7 +10,7 @@ import NumberList from '../objects/numberList';
 import { Level, LevelType } from '../objects/level';
 import { Dragger } from '../objects/dragger';
 import { RoundStats } from '../objects/roundStats';
-import { PLAYABLE_LEVELS } from '../objects/playableLevel';
+import { PLAYABLE_LEVELS, Subscript } from '../objects/playableLevel';
 
 /**
  * The MainScene is the core scene where all the action happens.
@@ -186,8 +186,8 @@ export default class MainScene extends Phaser.Scene {
         if (this.dragger.endIndex !== null) {
             indexes.push(this.dragger.endIndex + 1);
         }
-        let normalized = this.targetIndex.normalizeIndexOrSubscript(indexes, this.listGroup.length);
-        this.handlePet(normalized === this.targetIndex.getIndex());
+        let normalized = this.targetIndex.normalizeIndexOrSubscript(indexes as Subscript, this.listGroup.length);
+        this.handlePet(normalized === this.targetIndex.getTargetIndex());
         this.dragger.hide();
     }
 

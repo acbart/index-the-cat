@@ -101,5 +101,6 @@ export const PLAYABLE_LEVELS: Level[] = [
     new Level("You finished!", LevelType.Win,
         () => 0,
         (length) => ":)",
-        (length) => ["Win!"])
+        (length) => [0])
+    // TODO: Separate win scene
 ];
