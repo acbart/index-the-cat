@@ -20,6 +20,14 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/index-the-cat/devassets/citations.md"
   },
   {
+    "revision": "61474e5c06da4e812a88757ce205fa3d",
+    "url": "/index-the-cat/devassets/common_words.json"
+  },
+  {
+    "revision": "a2dc64d380902d8892ca94e8a8df5d98",
+    "url": "/index-the-cat/devassets/common_words.txt"
+  },
+  {
     "revision": "3510ad7af763c81732bbd066cf84d7c4",
     "url": "/index-the-cat/devassets/img/backdrop-thin.png"
   },
@@ -68,8 +76,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/index-the-cat/devfavicon.ico"
   },
   {
-    "revision": "d66b038780c345ad75a2",
-    "url": "/index-the-cat/devgen.main.db66dee5fb6b5c65c416.bundle.js"
+    "revision": "61377e9d3779b1d45c5d",
+    "url": "/index-the-cat/devgen.main.92a28b6c49f1cebeefc7.bundle.js"
   },
   {
     "revision": "5d0946118a0606bd6b02",
@@ -88,7 +96,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/index-the-cat/devicons/icons8-cat-64.png"
   },
   {
-    "revision": "766d051e67e9f8a595c0af75d29dbf76",
+    "revision": "d7e830bcf74a57c0fa32a03640583531",
     "url": "/index-the-cat/devindex.html"
   },
   {
